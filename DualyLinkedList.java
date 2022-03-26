@@ -31,13 +31,13 @@ public class DualyLinkedList<T> {
         final DualyLinkedList<String> list = new DualyLinkedList<>();
         list.add("test1");
         list.add("test2");
-//        list.add("test3");
-//        list.add("test4");
-//        list.add("test5");
-//        list.add("test6");
-//        list.add("test7");
-//        list.add("test8");
-//        list.add("test9");
+        list.add("test3");
+        list.add("test4");
+        list.add("test5");
+        list.add("test6");
+        list.add("test7");
+        list.add("test8");
+        list.add("test9");
         System.out.println("получение всего списка");
         System.out.println(list);
         list.printlist(list);
@@ -92,17 +92,15 @@ public class DualyLinkedList<T> {
         }
 
 
-        Node<T> prev = head;
+        Node<T> prev = tail;
 
-        head = new Node<>(value, null, prev);
-        prev.next = head;
+
+        tail = new Node<>(value, null, prev);
+        prev.next = tail;
+
 
     }
 
-
-    public int size() {
-        return size;
-    }
 
     public T get(int index) {       // метод еще не переделан
         if (index < 0 || index >= size) {
@@ -137,14 +135,25 @@ public class DualyLinkedList<T> {
         return val;
     }
 
+    public void printNode(Node node){
+        System.out.println(node.next);
+    }
+
     public void printlist(DualyLinkedList list) {
 
         for (int i = 0; i < list.size; i++) {
 
-            System.out.println("значение " + list.get(i) + " ссылка на предыдущий " + getPrev(getNode(i)) + " ссылка на последующий " + getNext(getNode(i)));
+            System.out.println("значение " + list.get(i) + " ссылка на предыдущий "
+                    + getPrev(getNode(i)) + " ссылка на последующий " + getNext(getNode(i))+"     "+ (getNode(i).toString()));;
+
+
         }
     }
 
+
+    public int size() {
+        return size;
+    }
 
     @Override
     public String toString() {
@@ -155,5 +164,22 @@ public class DualyLinkedList<T> {
                 ", tail=" + tail +
                 '}';
     }
+
+
+//    public void add(T value) {      // метод вроде бы переделан
+//        size++;
+//        if (head == null) {
+//            head = new Node<>(value, null, null);
+//            tail = head;                // если элемент первый - хвост=голова
+//            return;
+//        }
+//
+//
+//        Node<T> prev = head;
+//
+//        head = new Node<>(value, null, prev);
+//        prev.next = head;
+//
+//    }
 
 }
